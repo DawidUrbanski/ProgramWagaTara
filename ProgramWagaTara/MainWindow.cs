@@ -25,11 +25,14 @@ namespace ProgramWagaTara
         public MainWindow()
         {
             InitializeComponent();
+
+            string portName = Properties.Settings.Default.PortCom;
+
             this.FillCOMPorts();
-            this.COMPortsComboBox.Text = Properties.Settings.Default.PortCom;
+            this.COMPortsComboBox.Text = (string.IsNullOrWhiteSpace(portName)) ? "COM1" : portName;
 
             serialPort = new SerialPort();
-            serialPort.PortName = Properties.Settings.Default.PortCom;
+            serialPort.PortName = (string.IsNullOrWhiteSpace(portName)) ? "COM1" : portName;
             serialPort.DataBits = 8;
             serialPort.Parity = Parity.None;
             serialPort.StopBits = StopBits.One;
@@ -73,7 +76,11 @@ namespace ProgramWagaTara
                 this.Masa.BackColor = Color.Salmon;
                 this.Jednostka.BackColor = Color.Salmon;
                 this.Netto.BackColor = Color.Salmon;
+                this.NettoCheckbox.BackColor = Color.Salmon;
                 this.Brutto.BackColor = Color.Salmon;
+                this.BruttoCheckbox.BackColor = Color.Salmon;
+                this.stabilne.BackColor = Color.Salmon;
+                this.zero.BackColor = Color.Salmon;
             }
         }
 
